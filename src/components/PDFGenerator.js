@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { PDFViewer, Document, Page, Text, View, pdf } from '@react-pdf/renderer';
 import axios from 'axios';
+import { WhatsAppIcon, GmailIcon, TelegramIcon, CloseIcon, ShareIcon } from './icons'
 const PDFGenerator = () => {
+
   const [name, setName] = useState('');
   const [data, setData] = useState('');
   const [shareUrl, setShareUrl] = useState(''); // State to hold the shareable URL
@@ -89,14 +91,18 @@ const PDFGenerator = () => {
       {/* Display shareable URL */}
       {shareUrl && (
         <div>
-          <button onClick={togglePopup}>Share</button>
+          <button onClick={togglePopup}><ShareIcon /></button>
           {isPopupVisible && (
             <div className="popup">
+              <button onClick={togglePopup}><CloseIcon />
+              </button>
               <div className="popup-content">
-                <button onClick={() => sharePDF('whatsapp')}>Share on WhatsApp</button>
-                <button onClick={() => sharePDF('gmail')}>Share via Gmail</button>
-                <button onClick={() => sharePDF('telegram')}>Share on Telegram</button>
-                <button onClick={togglePopup}>Close</button>
+                <button onClick={() => sharePDF('whatsapp')}>
+                  <WhatsAppIcon /></button>
+                <button onClick={() => sharePDF('gmail')}> <GmailIcon />
+                </button>
+                <button onClick={() => sharePDF('telegram')}> <TelegramIcon />
+                </button>
               </div >
             </div >
           )}
